@@ -3,12 +3,13 @@ const bodyParser = require('body-parser');
 const route = require('./routes/route.js');
 const { default: mongoose } = require('mongoose');
 const app = express();
+const middleware= require("./middlewares/commonMiddlewares")
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-mongoose.connect("mongodb+srv://functionup-cohort:G0Loxqc9wFEGyEeJ@cluster0.rzotr.mongodb.net/Pritesh8769811-DB?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://anjalis1509:anjalis1509@cluster0.rhdux0p.mongodb.net/books-DB", {
     useNewUrlParser: true
 })
 .then( () => console.log("MongoDb is connected"))
@@ -20,6 +21,9 @@ app.use (
         next();
   }
   );
+
+
+  app.use(middleware.middleware)
 
 app.use('/', route);
 
